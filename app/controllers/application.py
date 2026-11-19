@@ -5,6 +5,7 @@ class Application():
 
     def __init__(self):
         self.pages = {
+            'dashboard': self.dashboard
         }
 
 
@@ -15,3 +16,6 @@ class Application():
 
     def helper(self):
         return template('app/views/html/helper')
+
+    def dashboard(self):
+        return template('app/views/html/dashboard')

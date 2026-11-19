@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottle Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+    <div class="app-shell" id="appShell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-icon">B</div>
+                <span class="brand-name">Bottle<span>Manager</span></span>
+            </div>
+
+            <div class="sidebar-label">MENU PRINCIPAL</div>
+
+            <nav class="navigation">
+                <a href="#inicio" class="nav-link active">
+                    <span>▦</span>
+                    <span class="nav-text">Visão geral</span>
+                </a>
+
+                <a href="#produtos" class="nav-link">
+                    <span>◈</span>
+                    <span class="nav-text">Produtos</span>
+                </a>
+
+                <a href="#estoque" class="nav-link">
+                    <span>▤</span>
+                    <span class="nav-text">Estoque</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="profile-avatar">BM</div>
+                <div class="profile-info">
+                    <strong>Administrador</strong>
+                    <small>Projeto acadêmico</small>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content" id="inicio">
+
+            <header class="topbar">
+                <button class="menu-button" id="sidebarToggle" aria-label="Alternar menu">
+                    ☰
+                </button>
+
+                <div>
+                    <span class="breadcrumb">Bottle Manager /</span>
+                    <strong>Visão geral</strong>
+                </div>
+
+                <div class="topbar-date" id="currentDate"></div>
+            </header>
+
+            <section class="welcome">
+                <div>
+                    <span class="eyebrow">PAINEL DE CONTROLE</span>
+                    <h1>Visão geral</h1>
+                    <p>Uma visão rápida do seu gerenciamento de bebidas.</p>
+                </div>
+
+                <div class="welcome-decoration">BM</div>
+            </section>
+
+            <section class="stats-grid" id="estoque">
+                <article class="stat-card">
+                    <div class="stat-icon purple">◈</div>
+                    <span class="stat-label">Produtos cadastrados</span>
+                    <strong>128</strong>
+                    <small>Itens no catálogo</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">▤</div>
+                    <span class="stat-label">Itens em estoque</span>
+                    <strong>846</strong>
+                    <small>Unidades disponíveis</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange">◷</div>
+                    <span class="stat-label">Estoque baixo</span>
+                    <strong>06</strong>
+                    <small>Precisam de atenção</small>
+                </article>
+            </section>
+
+            <section class="products-section" id="produtos">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CATÁLOGO</span>
+                        <h2>Produtos em destaque</h2>
+                        <p>Consulte os produtos disponíveis no sistema.</p>
+                    </div>
+
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="productSearch"
+                            placeholder="Buscar produto..."
+                            aria-label="Buscar produto"
+                        >
+                    </div>
+                </div>
+
+                <div class="product-grid" id="productGrid">
+
+                    <article class="product-card" data-name="coca cola refrigerante">
+                        <div class="product-visual coca">
+                            <span>COCA-COLA</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Refrigerante</span>
+                            <h3>Coca-Cola</h3>
+                            <div class="product-bottom">
+                                <strong>R$ 8,00</strong>
+                                <span class="stock-status available">Em estoque</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-name="suco de laranja natural">
+                        <div class="product-visual juice">
+                            <span>SUCO</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Suco natural</span>
+                            <h3>Suco de Laranja</h3>
+                            <div class="product-bottom">
+                                <strong>R$ 12,00</strong>
+                                <span class="stock-status available">Em estoque</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-name="agua mineral">
+                        <div class="product-visual water">
+                            <span>ÁGUA</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Água</span>
+                            <h3>Água Mineral</h3>
+                            <div class="product-bottom">
+                                <strong>R$ 4,00</strong>
+                                <span class="stock-status available">Em estoque</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-name="energetico">
+                        <div class="product-visual energy">
+                            <span>ENERGY</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Energético</span>
+                            <h3>Energético</h3>
+                            <div class="product-bottom">
+                                <strong>R$ 10,00</strong>
+                                <span class="stock-status low">Estoque baixo</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <span>⌕</span>
+                    <strong>Nenhum produto encontrado</strong>
+                    <p>Tente buscar por outro nome.</p>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <span>Bottle Manager</span>
+                <span>Projeto acadêmico • Python + Bottle</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

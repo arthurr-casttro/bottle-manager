@@ -22,7 +22,9 @@ def helper(info= None):
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
 
-
+@app.route('/dashboard')
+def dashboard(info= None):
+    return ctl.render('dashboard')
 
 #-----------------------------------------------------------------------------
 
