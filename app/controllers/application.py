@@ -5,7 +5,9 @@ class Application():
 
     def __init__(self):
         self.pages = {
-            'dashboard': self.dashboard
+            'dashboard': self.dashboard,
+            'bebidas': self.bebidas,
+            'dashboard2': self.dashboard2
         }
 
 
@@ -19,3 +21,9 @@ class Application():
 
     def dashboard(self):
         return template('app/views/html/dashboard')
+
+    def bebidas(self):  
+        return template('app/views/html/bebidas')
+
+    def dashboard2(self):
+        return template('app/views/html/dashboard2')

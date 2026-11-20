@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottle Manager | Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/dashboard2.css">
+</head>
+
+<body>
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">B</div>
+            <span class="brand-name">Bottle<span>Manager</span></span>
+        </div>
+
+        <div class="sidebar-label">MENU PRINCIPAL</div>
+
+        <nav class="navigation">
+            <a href="/dashboard2" class="nav-link active">
+                <span>▦</span>
+                <span>Visão geral</span>
+            </a>
+
+            <a href="/bebidas" class="nav-link">
+                <span>◈</span>
+                <span>Produtos</span>
+            </a>
+
+            <a href="/bebidas" class="nav-link">
+                <span>▤</span>
+                <span>Estoque</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="profile-avatar">BM</div>
+            <div class="profile-info">
+                <strong>Administrador</strong>
+                <small>Projeto acadêmico</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button class="menu-button" id="sidebarToggle">☰</button>
+
+            <div>
+                <span class="breadcrumb">Bottle Manager /</span>
+                <strong>Visão geral</strong>
+            </div>
+
+            <div class="topbar-date" id="currentDate"></div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <span class="eyebrow">PAINEL DE CONTROLE</span>
+                <h1>Visão geral</h1>
+                <p>Acompanhe os produtos e o estoque do seu negócio.</p>
+            </div>
+
+            <div class="welcome-decoration">BM</div>
+        </section>
+
+        <!-- INDICADORES DINÂMICOS -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-icon purple">◈</div>
+                <span class="stat-label">Produtos cadastrados</span>
+                <strong>{{estatisticas['total_produtos']}}</strong>
+                <small>Produtos no catálogo</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">▤</div>
+                <span class="stat-label">Itens em estoque</span>
+                <strong>{{estatisticas['total_estoque']}}</strong>
+                <small>Unidades disponíveis</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon orange">◷</div>
+                <span class="stat-label">Estoque baixo</span>
+                <strong>{{estatisticas['estoque_baixo']}}</strong>
+                <small>Produtos com 5 unidades ou menos</small>
+            </article>
+
+        </section>
+
+        <!-- PRODUTOS DINÂMICOS -->
+        <section class="products-section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">CATÁLOGO</span>
+                    <h2>Produtos cadastrados</h2>
+                    <p>Informações atualizadas a partir dos registros do sistema.</p>
+                </div>
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="productSearch"
+                        placeholder="Buscar produto..."
+                    >
+                </div>
+            </div>
+
+            % if bebidas:
+                <div class="product-grid" id="productGrid">
+
+                    % for bebida in bebidas:
+                        <article
+                            class="product-card"
+                            data-name="{{bebida.nome.lower()}} {{bebida.categoria.lower()}}"
+                        >
+                            <div class="product-visual">
+                                <span>{{bebida.nome}}</span>
+                            </div>
+
+                            <div class="product-info">
+                                <span class="product-category">
+                                    {{bebida.categoria}}
+                                </span>
+
+                                <h3>{{bebida.nome}}</h3>
+
+                                <div class="product-bottom">
+                                    <strong>R$ {{'%.2f' % bebida.preco}}</strong>
+
+                                    % if bebida.quantidade <= 5:
+                                        <span class="stock-status low">
+                                            Estoque baixo · {{bebida.quantidade}}
+                                        </span>
+                                    % else:
+                                        <span class="stock-status available">
+                                            {{bebida.quantidade}} unidades
+                                        </span>
+                                    % end
+                                </div>
+                            </div>
+                        </article>
+                    % end
+
+                </div>
+
+                <div class="empty-state" id="emptyState" hidden>
+                    <span>⌕</span>
+                    <strong>Nenhum produto encontrado</strong>
+                    <p>Tente buscar por outro nome ou categoria.</p>
+                </div>
+
+            % else:
+                <div class="empty-state empty-visible">
+                    <span>◈</span>
+                    <strong>Nenhum produto cadastrado</strong>
+                    <p>Cadastre sua primeira bebida para visualizar os dados aqui.</p>
+                    <a href="/bebidas">Cadastrar produto</a>
+                </div>
+            % end
+
+        </section>
+
+        <footer class="footer">
+            <span>Bottle Manager</span>
+            <span>Python + Bottle</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="/static/js/dashboard2.js"></script>
+</body>
+</html>
