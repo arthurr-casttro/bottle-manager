@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bottle Manager | Entrar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <!-- LADO ESQUERDO -->
+        <section class="login-presentation">
+
+            <div class="presentation-brand">
+                <div class="brand-icon">B</div>
+
+                <span>
+                    Bottle<span class="brand-highlight">Manager</span>
+                </span>
+            </div>
+
+            <div class="presentation-content">
+
+                <span class="eyebrow">GESTÃO INTELIGENTE</span>
+
+                <h1>
+                    Seu estoque.
+                    <span>Sob controle.</span>
+                </h1>
+
+                <p>
+                    Gerencie seus produtos, acompanhe seu estoque
+                    e tenha todas as informações do seu negócio
+                    em um só lugar.
+                </p>
+
+                <div class="presentation-features">
+
+                    <div class="feature">
+                        <span class="feature-icon">◈</span>
+                        <div>
+                            <strong>Gestão de produtos</strong>
+                            <small>Organize seu catálogo de bebidas.</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">▤</span>
+                        <div>
+                            <strong>Controle de estoque</strong>
+                            <small>Acompanhe suas unidades disponíveis.</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">◷</span>
+                        <div>
+                            <strong>Visão geral</strong>
+                            <small>Consulte indicadores do seu negócio.</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="presentation-footer">
+                Bottle Manager · Python + Bottle
+            </div>
+
+            <div class="background-decoration decoration-one"></div>
+            <div class="background-decoration decoration-two"></div>
+
+        </section>
+
+
+        <!-- LADO DIREITO -->
+        <section class="login-area">
+
+            <div class="login-card">
+
+                <div class="mobile-brand">
+                    <div class="brand-icon">B</div>
+                    <span>Bottle<span class="brand-highlight">Manager</span></span>
+                </div>
+
+                <div class="login-heading">
+                    <span class="eyebrow">ÁREA ADMINISTRATIVA</span>
+
+                    <h2>Bem-vindo de volta!</h2>
+
+                    <p>
+                        Informe suas credenciais para acessar sua conta.
+                    </p>
+                </div>
+
+                % if erro:
+                    <div class="error-message">
+                        <span>!</span>
+                        <p>{{erro}}</p>
+                    </div>
+                % end
+
+                <form action="/login" method="POST" id="loginForm">
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="seu@email.com"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="senha">Senha</label>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon">⌑</span>
+
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                id="togglePassword"
+                                aria-label="Mostrar senha"
+                            >
+                                ◉
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-button" id="loginButton">
+                        <span>Entrar no sistema</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+
+                </form>
+
+                <div class="login-security">
+                    <span>◈</span>
+                    <p>Acesso restrito a usuários autorizados.</p>
+                </div>
+
+            </div>
+
+            <div class="login-bottom">
+                <span>© 2026 Bottle Manager</span>
+                <span>Todos os direitos reservados.</span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="/static/js/login.js"></script>
+
+</body>
+</html>

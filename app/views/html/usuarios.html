@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários | Bottle Manager</title>
+
+    <link rel="stylesheet" href="/static/css/usuarios.css">
+</head>
+
+<body>
+    <main class="page">
+
+        <header class="page-header">
+            <div>
+                <a href="/dashboard2" class="back-link">← Dashboard</a>
+                <h1>Usuários</h1>
+                <p>Gerencie as contas de acesso ao Bottle Manager.</p>
+            </div>
+
+            <button class="btn-primary" id="newUser" type="button">
+                + Novo usuário
+            </button>
+        </header>
+
+        <section class="table-card">
+
+            <div class="table-toolbar">
+                <div class="search-field">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="userSearch"
+                        placeholder="Buscar por nome ou e-mail..."
+                    >
+                </div>
+
+                <span class="result-count">
+                    {{len(usuarios)}} registros
+                </span>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>E-mail</th>
+                            <th class="actions-column">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        % for item in usuarios:
+                        <tr class="user-row">
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        {{item.username[:1].upper()}}
+                                    </div>
+
+                                    <span class="user-name">
+                                        {{item.username}}
+                                    </span>
+                                </div>
+                            </td>
+
+                            <td class="user-email">
+                                {{item.email}}
+                            </td>
+
+                            <td>
+                                <div class="row-actions">
+
+                                    <button
+                                        type="button"
+                                        class="icon-button edit-button"
+                                        title="Editar"
+                                        aria-label="Editar usuário"
+                                        data-username="{{item.username}}"
+                                        data-email="{{item.email}}"
+                                    >✎</button>
+
+                                    <form
+                                        action="/usuarios/excluir/{{item.username}}"
+                                        method="POST"
+                                        class="delete-form"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="icon-button danger"
+                                            title="Excluir"
+                                            aria-label="Excluir usuário"
+                                        >✕</button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                        % end
+                    </tbody>
+                </table>
+            </div>
+
+            % if not usuarios:
+            <div class="empty-state">
+                Nenhum usuário cadastrado.
+            </div>
+            % end
+
+            <div id="emptySearch" class="empty-state" hidden>
+                Nenhum resultado encontrado.
+            </div>
+
+        </section>
+    </main>
+
+
+    <!-- Modal de cadastro e edição -->
+
+    <dialog id="userModal" class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTitle">Novo usuário</h2>
+                <p id="modalDescription">
+                    Preencha os dados da conta de acesso.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="close-button"
+                id="closeModal"
+                aria-label="Fechar"
+            >✕</button>
+        </div>
+
+        <form
+            id="userForm"
+            action="/usuarios/cadastrar"
+            method="POST"
+        >
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+                    <label for="username">Nome de usuário</label>
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        placeholder="Ex: arthur"
+                        maxlength="40"
+                        required
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="email">E-mail</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="usuario@email.com"
+                        maxlength="120"
+                        required
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="senha">Senha</label>
+                    <input
+                        id="senha"
+                        name="senha"
+                        type="password"
+                        placeholder="Digite uma senha"
+                        minlength="6"
+                        required
+                    >
+                    <small id="passwordHint">
+                        A senha será armazenada com hash.
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelModal"
+                >Cancelar</button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    id="submitButton"
+                >Cadastrar usuário</button>
+            </div>
+
+        </form>
+    </dialog>
+
+    <script src="/static/js/usuarios.js"></script>
+</body>
+</html>
